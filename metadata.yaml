@@ -1,0 +1,43 @@
+_repo: Concerning-the-Spiritual-in-Art_5321
+_version: 0.0.1
+alternative_title: Über das Geistige in der Kunst. English
+contributor:
+  translator:
+    agent_name: Sadleir, Michael
+    aliases:
+    - Sadler, Michael T. H. (Michael Thomas Harvey)
+    - Sadler, M. T. H. (Michael Thomas Harvey)
+    birthdate: 1888
+    deathdate: 1957
+    gutenberg_agent_id: '1764'
+    url: http://www.gutenberg.org/2009/agents/1764
+creator:
+  author:
+    agent_name: Kandinsky, Wassily
+    aliases:
+    - Kandinsky, Vassily
+    - Kandinsky, Wassili
+    - Kandinsky, Vasily
+    - Кандинский, Василий
+    birthdate: 1866
+    deathdate: 1944
+    gutenberg_agent_id: '1763'
+    url: http://www.gutenberg.org/2009/agents/1763
+    wikipedia: http://en.wikipedia.org/wiki/Wassily_Kandinsky
+description: ''
+gutenberg_bookshelf: Art
+gutenberg_issued: '2004-03-01'
+gutenberg_type: Text
+identifiers:
+  gutenberg: '5321'
+language: en
+publisher: Project Gutenberg
+rights: Public domain in the USA.
+rights_url: http://creativecommons.org/about/pdm
+subjects:
+- !lcsh 'Painting'
+- !lcc 'N'
+- !lcsh 'Aesthetics'
+- GITenberg
+title: Concerning the Spiritual in Art
+url: http://www.gutenberg.org/ebooks/5321
