@@ -1,0 +1,61 @@
+sudo: required
+dist: trusty
+language: ruby
+
+before_install:
+before_install:
+- gem install asciidoctor -v 1.5.2
+- gem install tilt
+- sudo pip install git+https://github.com/gitenberg-dev/gitberg
+- sudo pip install pillow
+- sudo pip install cssutils
+- sudo pip install docutils
+- sudo pip install roman
+- sudo pip install git+https://github.com/gitenberg-dev/pg-epubmaker
+script:
+- VERSION=`ruby -e "require 'yaml'; meta = YAML.load_file('metadata.yaml'); puts meta['_version'];"`
+- git clone https://github.com/gitenberg-dev/asciidoctor-htmlbook.git
+- sudo pip install -r asciidoctor-htmlbook/gitberg-machine/requirements.txt
+
+- /usr/bin/python -c "from gitenberg import travis; travis.build_epub()"
+- ebook-convert book.epub book.mobi
+- xvfb-run ebook-convert book.epub book.pdf
+branches:
+  only:
+  - master
+notifications:
+  webhooks:
+    urls:
+      - https://unglue.it/api/travisci/webhook
+    on_success: always
+    on_failure: never
+    on_start: never
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: Rqp5Jj2SebkKTD8U1QAHzFYrHR/QjQiKNkl/L9/zdne71Pz5GEGCtdPDOB267WGwoa4C4or5HzHznLhunEsmKFMrdzf4e9eM71/zgQLJhPTpaRzirDUDwNON/6o0lSGBDPAgq0gGYmQkxjSL2eQkpnBUlBB0mBWUEoOBAQgKsO0gqUDWRe2Z7VHZBbTeyEyhdp8F8uzhih86W4+utHf75vHgOAguYizg6JT0GEIshP5x+FmK1lX/PYdy1MES9Xq4+M+ctkAjsGZvox2c9s0Dlmi4Q/I8Po/zZryc6WO9ZQF29syylfj4Q7a2Jxjf7ShN6iPlPEGTSHWAVXalLOBVPbINK175r5vJ6I7KXtKWOTPnDSjUWaKuRZiqMwfB03HzQOQ06OECJ7voP2YW66aY9NLx1ig+HmNWoGKfkfJ3PtwDAeqfVTizx6IGF6UR8xrxGRjpLxeYCleEYukkfqwQNPg8iFc7DMO0fy6sWhmK+ZfhM5VCBTw3sOg/IzoyyDCsdmzeTrXdc3XzddZLMZzrBbpKShvVoaxrb5OVNP+V3JNVdzXoCy6DxOTf9ikM4XKJ2eiYxlZwTrTlSCoX/FQiY7Z7BLc4KkxprhG9hPzMyFrOcWIoo/jylpMJL/QPwrWTWPIfHiql+3Xg0az0GeKvNT4hujrHSsVZmR9CTRVYIN4=
+  file:
+    - book.epub
+    - book.mobi
+    - book.pdf
+  "on":
+    repo: GITenberg/Concerning-the-Spiritual-in-Art_5321
+addons:
+  apt:
+    packages:
+    - xsltproc
+    - xvfb
+    - calibre
+    - python-pip
+    - git
+    - python-dev
+    - libjpeg-dev
+    - libpng-dev
+    - libfreetype6
+    - libfreetype6-dev
+    - zlib1g-dev
+    - python-lxml
+    - libxml2-dev
+    - libxslt1-dev
+    - tidy
